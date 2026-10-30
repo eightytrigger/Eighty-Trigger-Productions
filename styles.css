@@ -34,7 +34,8 @@ button { font: inherit; }
 .site-nav a:hover, .site-nav a:focus-visible { color: var(--white); }
 .nav-cta { display: inline-flex; min-height: 2.8rem; align-items: center; gap: 1.1rem; padding: 0 1.1rem; border: 1px solid #52504d; font-size: .7rem; transition: border-color .2s ease, background .2s ease; }
 .nav-cta:hover { border-color: var(--red); background: rgba(241,40,36,.12); }
-.nav-cta span { color: var(--red); font-size: 1rem; }
+.nav-cta .arrow-icon { color: var(--red); font-size: 1rem; }
+.arrow-icon { display: inline-block; width: 1em; height: 1em; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; vertical-align: -.12em; }
 .menu-toggle { display: none; }
 .language-switcher { display: flex; align-items: center; }
 .language-switcher select { min-height: 2.45rem; padding: 0 .6rem; border: 1px solid #3b3937; border-radius: 0; background: #101010; color: var(--white); font-family: var(--mono); font-size: .63rem; letter-spacing: .08em; cursor: pointer; }
@@ -55,9 +56,9 @@ h1 em, h2 em { color: var(--red); font-family: var(--serif); font-weight: 500; l
 .button:hover { transform: translateY(-2px); }
 .button--light { background: var(--white); color: var(--black); }
 .button--light:hover { background: #d7d4d0; }
-.button--light span, .button--red span { font-size: 1rem; }
+.button--light .arrow-icon, .button--red .arrow-icon { font-size: 1rem; }
 .text-link { color: #b8b5b2; font-size: .72rem; }
-.text-link span { margin-left: .5rem; color: var(--red); }
+.text-link .arrow-icon { margin-left: .5rem; color: var(--red); }
 
 .hero-art { position: relative; aspect-ratio: 16 / 9; overflow: hidden; isolation: isolate; background: radial-gradient(ellipse at 68% 45%, rgba(73,24,22,.55), transparent 25%), radial-gradient(ellipse at 53% 54%, #1a1717 0, #111 35%, #0a0a0a 74%); }
 .hero-media { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .76; filter: brightness(.58) contrast(1.08); }
@@ -171,7 +172,7 @@ h1 em, h2 em { color: var(--red); font-family: var(--serif); font-weight: 500; l
 .contact h2 { max-width: 12ch; margin-bottom: 1.5rem; font-size: clamp(3.4rem, 8vw, 7.8rem); }
 .contact > p:not(.eyebrow) { max-width: 30rem; margin-bottom: 2rem; color: var(--muted); font-size: .9rem; line-height: 1.8; }
 .contact-email { display: inline-flex; align-items: center; gap: .9rem; margin: 0 0 2rem; color: var(--white); font-size: clamp(1rem, 2vw, 1.35rem); }
-.contact-email span { color: var(--red); }
+.contact-email .arrow-icon { color: var(--red); }
 .contact-email:hover { color: var(--red); }
 .button--red { border: 1px solid var(--red); background: var(--red); color: var(--white); }
 .button--red:hover { background: #cb1f1b; }
