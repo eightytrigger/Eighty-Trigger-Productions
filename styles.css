@@ -168,10 +168,9 @@ h1 em, h2 em { color: var(--red); font-family: var(--serif); font-weight: 500; l
 .services { background: #101010; }
 .service-list { border-top: 1px solid var(--line); }
 .service { display: grid; grid-template-columns: .35fr 1.2fr 1fr auto; align-items: center; gap: 1.5rem; min-height: 8rem; border-bottom: 1px solid var(--line); }
-.service__feature { grid-column: 1 / -1; min-width: 0; margin-top: 1.75rem; padding: 2rem 0 clamp(2rem, 4vw, 4rem); border-top: 1px solid var(--line); }
-.service__feature .section-shell { padding-right: 0; padding-left: 0; }
-.service__feature.section-space { padding-top: 2rem; padding-bottom: clamp(2rem, 4vw, 4rem); }
-.service__feature .section-heading { margin-bottom: clamp(2rem, 4vw, 3rem); }
+.service-features { display: grid; gap: clamp(4rem, 8vw, 7rem); padding-top: clamp(3rem, 6vw, 6rem); }
+.service-feature { min-width: 0; scroll-margin-top: 5rem; }
+.service-feature .section-heading { margin-bottom: clamp(2rem, 4vw, 3rem); }
 .service__number { color: var(--red); font-family: var(--mono); font-size: .65rem; }
 .service > h3 { margin: 0; font-size: clamp(1.15rem, 2vw, 1.7rem); font-weight: 500; letter-spacing: -.045em; }
 .service > p { max-width: 23rem; margin: 0; color: var(--muted); font-size: .8rem; line-height: 1.75; }
