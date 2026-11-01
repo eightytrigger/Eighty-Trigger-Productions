@@ -107,6 +107,35 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "Intersect
   document.documentElement.classList.add("scroll-reveal-enabled");
 }
 
+const sectionHeadlines = document.querySelectorAll(".section-heading h2, .studio h2, .contact h2");
+let headlineMotionFrame = 0;
+
+function updateHeadlineMotion() {
+  headlineMotionFrame = 0;
+  const viewportCenter = window.innerHeight / 2;
+
+  for (const headline of sectionHeadlines) {
+    const bounds = headline.getBoundingClientRect();
+    if (bounds.bottom < -80 || bounds.top > window.innerHeight + 80) continue;
+
+    const headlineCenter = bounds.top + bounds.height / 2;
+    const offset = Math.max(-10, Math.min(10, (viewportCenter - headlineCenter) * 0.025));
+    headline.style.setProperty("--headline-parallax-y", `${offset.toFixed(2)}px`);
+  }
+}
+
+function scheduleHeadlineMotion() {
+  if (headlineMotionFrame || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  headlineMotionFrame = window.requestAnimationFrame(updateHeadlineMotion);
+}
+
+if (sectionHeadlines.length && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  document.documentElement.classList.add("headline-motion-enabled");
+  window.addEventListener("scroll", scheduleHeadlineMotion, { passive: true });
+  window.addEventListener("resize", scheduleHeadlineMotion);
+  scheduleHeadlineMotion();
+}
+
 function updateVideoAudioToggle() {
   if (!heroVideo || !videoAudioToggle) return;
 
