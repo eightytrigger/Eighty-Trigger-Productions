@@ -73,6 +73,40 @@ if (gastronomieTrack) {
   updateGastronomieControls();
 }
 
+const scrollRevealTargets = document.querySelectorAll([
+  ".hero-copy",
+  ".hero-art",
+  ".section-heading",
+  ".work-card",
+  ".work-disclaimer",
+  ".gastronomie-carousel",
+  ".service",
+  ".process-step",
+  ".equipment-card",
+  ".studio-layout",
+  ".team-member",
+  ".contact > .eyebrow",
+  ".contact > h2",
+  ".contact > p",
+  ".contact > a"
+].join(", "));
+
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+    }
+  }, { threshold: 0.12, rootMargin: "0px 0px -7% 0px" });
+
+  for (const target of scrollRevealTargets) {
+    target.classList.add("scroll-reveal");
+    revealObserver.observe(target);
+  }
+  document.documentElement.classList.add("scroll-reveal-enabled");
+}
+
 function updateVideoAudioToggle() {
   if (!heroVideo || !videoAudioToggle) return;
 
