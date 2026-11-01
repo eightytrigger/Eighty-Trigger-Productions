@@ -138,7 +138,7 @@ h1 em, h2 em { color: var(--red); font-family: var(--serif); font-weight: 500; l
 .zwaj-project__link { display: inline-flex; min-height: 2.75rem; align-items: center; gap: .55rem; font-size: .95rem; }
 .zwaj-project__link .arrow-icon { color: var(--red); }
 .zwaj-project__roles { margin: 0; color: #c1bdba; font-size: .88rem; line-height: 1.8; }
-.service__symbol[href] { display: grid; width: 2.75rem; height: 2.75rem; place-items: center; }
+.service__symbol[href] { display: grid; width: 2.75rem; height: 2.75rem; min-width: 45px; min-height: 45px; place-items: center; }
 .service__symbol[href]:focus-visible, .zwaj-project__link:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
 
 .gastronomie { overflow: hidden; background: #101010; }
@@ -168,11 +168,15 @@ h1 em, h2 em { color: var(--red); font-family: var(--serif); font-weight: 500; l
 .services { background: #101010; }
 .service-list { border-top: 1px solid var(--line); }
 .service { display: grid; grid-template-columns: .35fr 1.2fr 1fr auto; align-items: center; gap: 1.5rem; min-height: 8rem; border-bottom: 1px solid var(--line); }
+.service__feature { grid-column: 1 / -1; min-width: 0; margin-top: 1.75rem; padding: 2rem 0 clamp(2rem, 4vw, 4rem); border-top: 1px solid var(--line); }
+.service__feature .section-shell { padding-right: 0; padding-left: 0; }
+.service__feature.section-space { padding-top: 2rem; padding-bottom: clamp(2rem, 4vw, 4rem); }
+.service__feature .section-heading { margin-bottom: clamp(2rem, 4vw, 3rem); }
 .service__number { color: var(--red); font-family: var(--mono); font-size: .65rem; }
-.service h3 { margin: 0; font-size: clamp(1.15rem, 2vw, 1.7rem); font-weight: 500; letter-spacing: -.045em; }
-.service p { max-width: 23rem; margin: 0; color: var(--muted); font-size: .8rem; line-height: 1.75; }
+.service > h3 { margin: 0; font-size: clamp(1.15rem, 2vw, 1.7rem); font-weight: 500; letter-spacing: -.045em; }
+.service > p { max-width: 23rem; margin: 0; color: var(--muted); font-size: .8rem; line-height: 1.75; }
 .service__symbol { color: #777; font-size: 1.1rem; transition: color .2s ease, transform .2s ease; }
-.service:hover .service__symbol { color: var(--red); transform: translate(3px,-3px); }
+.service:hover > .service__symbol { color: var(--red); transform: translate(3px,-3px); }
 
 .equipment { background: #101010; }
 .equipment-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid #302d2b; border-bottom: 1px solid #302d2b; }
@@ -302,8 +306,8 @@ h1 em, h2 em { color: var(--red); font-family: var(--serif); font-weight: 500; l
   .gastronomie-controls { gap: .65rem; margin-top: 1rem; }
   .gastronomie-control { width: 2.6rem; height: 2.6rem; }
   .service { position: relative; grid-template-columns: 2rem 1fr auto; gap: .35rem 1rem; min-height: 8.3rem; padding: 1.5rem 0; }
-  .service h3 { font-size: 1.14rem; }
-  .service p { grid-column: 2; font-size: .76rem; }
+  .service > h3 { font-size: 1.14rem; }
+  .service > p { grid-column: 2; font-size: .76rem; }
   .service__symbol { grid-column: 3; grid-row: 1 / span 2; align-self: center; }
   .process-step { grid-template-columns: 2.2rem 1fr 1rem; gap: .8rem; padding-bottom: 2.8rem; }
   .process-list::before { left: .55rem; }
