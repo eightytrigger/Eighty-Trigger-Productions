@@ -5,6 +5,73 @@ const heroVideo = document.querySelector("#hero-video");
 const videoAudioToggle = document.querySelector(".hero-audio-toggle");
 const dictionaries = window.PORTFOLIO_TRANSLATIONS;
 let currentLanguage = "en";
+const gastronomieTrack = document.querySelector(".gastronomie-track");
+const gastronomieSlides = gastronomieTrack ? Array.from(gastronomieTrack.querySelectorAll(".gastronomie-slide")) : [];
+const gastronomieStatus = document.querySelector("[data-gastronomie-status]");
+const gastronomieProgress = document.querySelector("[data-gastronomie-progress]");
+const gastronomiePrevious = document.querySelector("[data-gastronomie-previous]");
+const gastronomieNext = document.querySelector("[data-gastronomie-next]");
+let gastronomieFrame = 0;
+let gastronomieIndex = 0;
+
+function updateGastronomieControls() {
+  if (!gastronomieTrack || gastronomieSlides.length === 0) return;
+
+  const trackCenter = gastronomieTrack.getBoundingClientRect().left + gastronomieTrack.clientWidth / 2;
+  let closestDistance = Infinity;
+  gastronomieSlides.forEach((slide, index) => {
+    const slideRect = slide.getBoundingClientRect();
+    const distance = Math.abs(slideRect.left + slideRect.width / 2 - trackCenter);
+    if (distance < closestDistance) {
+      gastronomieIndex = index;
+      closestDistance = distance;
+    }
+  });
+
+  gastronomieSlides.forEach((slide, index) => {
+    slide.classList.toggle("is-active", index === gastronomieIndex);
+    slide.setAttribute("aria-current", String(index === gastronomieIndex));
+  });
+  if (gastronomiePrevious) gastronomiePrevious.disabled = gastronomieIndex === 0;
+  if (gastronomieNext) gastronomieNext.disabled = gastronomieIndex === gastronomieSlides.length - 1;
+  if (gastronomieStatus) {
+    gastronomieStatus.textContent = dictionaries[currentLanguage].gastronomieSlideStatus
+      .replace("{current}", String(gastronomieIndex + 1).padStart(2, "0"))
+      .replace("{total}", String(gastronomieSlides.length).padStart(2, "0"));
+  }
+  if (gastronomieProgress) {
+    gastronomieProgress.style.transform = `scaleX(${(gastronomieIndex + 1) / gastronomieSlides.length})`;
+  }
+}
+
+function scheduleGastronomieUpdate() {
+  if (gastronomieFrame) return;
+  gastronomieFrame = window.requestAnimationFrame(() => {
+    gastronomieFrame = 0;
+    updateGastronomieControls();
+  });
+}
+
+function showGastronomieSlide(index) {
+  const slide = gastronomieSlides[index];
+  if (!slide || !gastronomieTrack) return;
+
+  const trackRect = gastronomieTrack.getBoundingClientRect();
+  const slideRect = slide.getBoundingClientRect();
+  const left = gastronomieTrack.scrollLeft + slideRect.left - trackRect.left + slideRect.width / 2 - gastronomieTrack.clientWidth / 2;
+  gastronomieTrack.scrollTo({
+    left,
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+  });
+}
+
+if (gastronomieTrack) {
+  gastronomieTrack.addEventListener("scroll", scheduleGastronomieUpdate, { passive: true });
+  window.addEventListener("resize", scheduleGastronomieUpdate);
+  gastronomiePrevious?.addEventListener("click", () => showGastronomieSlide(gastronomieIndex - 1));
+  gastronomieNext?.addEventListener("click", () => showGastronomieSlide(gastronomieIndex + 1));
+  updateGastronomieControls();
+}
 
 function updateVideoAudioToggle() {
   if (!heroVideo || !videoAudioToggle) return;
@@ -86,6 +153,7 @@ function setLanguage(language) {
   }
 
   updateVideoAudioToggle();
+  updateGastronomieControls();
 }
 
 if (languageSwitcher) {
