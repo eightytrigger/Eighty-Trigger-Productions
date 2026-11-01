@@ -80,7 +80,6 @@ const scrollRevealTargets = document.querySelectorAll([
   ".work-card",
   ".work-disclaimer",
   ".gastronomie-carousel",
-  ".instagram-showcase",
   ".service",
   ".process-step",
   ".equipment-card",
