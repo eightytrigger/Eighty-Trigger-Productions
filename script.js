@@ -73,85 +73,6 @@ if (gastronomieTrack) {
   updateGastronomieControls();
 }
 
-const instagramPermalinks = [
-  "https://www.instagram.com/p/DfDRWtUCHBZ/",
-  "https://www.instagram.com/p/De1wehUiJbP/",
-  "https://www.instagram.com/p/Del_vnEiEGg/",
-  "https://www.instagram.com/reel/DeZUFpwoQMp/",
-  "https://www.instagram.com/reel/DeWwkuxox_o/",
-  "https://www.instagram.com/reel/DeOozVkofe5/",
-  "https://www.instagram.com/reel/DeMCPlroKOM/",
-  "https://www.instagram.com/reel/DdzFMcfwceI/",
-  "https://www.instagram.com/reel/DcYzCDJISZ7/",
-  "https://www.instagram.com/reel/DcMEjMco6tQ/"
-];
-const instagramEmbed = document.querySelector("[data-instagram-embed]");
-const instagramLinks = Array.from(document.querySelectorAll("[data-instagram-index]"));
-const instagramStatus = document.querySelector("[data-instagram-status]");
-const instagramPrevious = document.querySelector("[data-instagram-previous]");
-const instagramNext = document.querySelector("[data-instagram-next]");
-let instagramIndex = 0;
-let instagramEmbedScriptRequested = false;
-
-function processInstagramEmbed() {
-  if (window.instgrm?.Embeds) {
-    window.instgrm.Embeds.process();
-    return;
-  }
-  if (instagramEmbedScriptRequested) return;
-
-  instagramEmbedScriptRequested = true;
-  const script = document.createElement("script");
-  script.src = "https://www.instagram.com/embed.js";
-  script.async = true;
-  script.dataset.instagramEmbed = "true";
-  script.addEventListener("load", () => window.instgrm?.Embeds?.process());
-  script.addEventListener("error", () => {
-    instagramEmbedScriptRequested = false;
-  });
-  document.body.append(script);
-}
-
-function updateInstagramEmbed(index) {
-  if (!instagramEmbed || !Number.isInteger(index) || index < 0 || index >= instagramPermalinks.length) return;
-
-  instagramIndex = index;
-  const permalink = instagramPermalinks[index];
-  const blockquote = document.createElement("blockquote");
-  blockquote.className = "instagram-media";
-  blockquote.dataset.instgrmPermalink = permalink;
-  blockquote.dataset.instgrmVersion = "14";
-  blockquote.setAttribute("data-instgrm-captioned", "");
-  const fallback = document.createElement("a");
-  fallback.href = permalink;
-  fallback.target = "_blank";
-  fallback.rel = "noopener noreferrer";
-  fallback.textContent = dictionaries[currentLanguage].instagramOpenPost;
-  blockquote.append(fallback);
-  instagramEmbed.replaceChildren(blockquote);
-
-  instagramLinks.forEach((link, linkIndex) => {
-    const selected = linkIndex === instagramIndex;
-    link.classList.toggle("is-active", selected);
-    link.setAttribute("aria-pressed", String(selected));
-  });
-  if (instagramStatus) {
-    instagramStatus.textContent = `${String(index + 1).padStart(2, "0")} / ${String(instagramPermalinks.length).padStart(2, "0")}`;
-  }
-  if (instagramPrevious) instagramPrevious.disabled = index === 0;
-  if (instagramNext) instagramNext.disabled = index === instagramPermalinks.length - 1;
-  processInstagramEmbed();
-}
-
-if (instagramEmbed && instagramLinks.length === instagramPermalinks.length) {
-  instagramLinks.forEach((link) => {
-    link.addEventListener("click", () => updateInstagramEmbed(Number(link.dataset.instagramIndex)));
-  });
-  instagramPrevious?.addEventListener("click", () => updateInstagramEmbed(instagramIndex - 1));
-  instagramNext?.addEventListener("click", () => updateInstagramEmbed(instagramIndex + 1));
-  updateInstagramEmbed(instagramIndex);
-}
-
 const scrollRevealTargets = document.querySelectorAll([
   ".hero-copy",
   ".hero-art",
@@ -297,8 +218,6 @@ function setLanguage(language) {
 
   updateVideoAudioToggle();
   updateGastronomieControls();
-  const instagramFallback = instagramEmbed?.querySelector(".instagram-media > a");
-  if (instagramFallback) instagramFallback.textContent = messages.instagramOpenPost;
 }
 
 if (languageSwitcher) {

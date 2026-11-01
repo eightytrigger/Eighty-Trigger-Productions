@@ -152,44 +152,20 @@ h1 em, h2 em { color: var(--red); font-family: var(--serif); font-weight: 500; l
 .gastronomie-progress { height: 1px; overflow: hidden; background: #302d2b; }
 .gastronomie-progress span { display: block; width: 100%; height: 100%; background: var(--red); transform: scaleX(.0714); transform-origin: left center; transition: transform .45s ease; }
 
-.instagram-reels { overflow: hidden; background: #101010; }
-.instagram-showcase { display: grid; grid-template-columns: minmax(17rem, .9fr) minmax(20rem, 1fr); align-items: center; gap: clamp(2.5rem, 9vw, 9rem); }
-.instagram-phone-wrap { display: flex; justify-content: center; }
-.instagram-phone { position: relative; width: min(100%, 23rem); padding: .65rem; border: 1px solid #5b5754; border-radius: 3.2rem; background: linear-gradient(145deg, #34312f, #131313 34%, #282523); box-shadow: 0 2rem 5rem rgba(0,0,0,.48), inset 0 0 0 1px rgba(255,255,255,.13); }
+.instagram-reels { overflow: hidden; background: #090909; }
+.instagram-showcase { display: flex; justify-content: center; }
+.instagram-phone { position: relative; width: min(100%, 24rem); padding: .65rem; border: 1px solid #5b5754; border-radius: 3.2rem; background: linear-gradient(145deg, #34312f, #131313 34%, #282523); box-shadow: 0 2rem 5rem rgba(0,0,0,.48), inset 0 0 0 1px rgba(255,255,255,.13); }
 .instagram-phone::before { position: absolute; z-index: 1; top: .65rem; left: 50%; width: 5.5rem; height: 1.15rem; border-radius: 1rem; background: #090909; content: ""; transform: translateX(-50%); pointer-events: none; }
 .instagram-phone__island { position: absolute; z-index: 2; top: 1.08rem; left: calc(50% + 1.55rem); width: .32rem; height: .32rem; border-radius: 50%; background: #171d29; box-shadow: 0 0 0 2px #111; pointer-events: none; }
-.instagram-phone__screen { display: flex; min-height: 41rem; flex-direction: column; overflow: hidden; border-radius: 2.65rem; background: #0c0c0c; }
-.instagram-phone__header { display: flex; min-height: 3.6rem; flex-direction: column; justify-content: center; gap: .12rem; padding: 1.05rem 1rem .5rem; border-bottom: 1px solid #292725; }
-.instagram-wordmark { font-family: var(--serif); font-size: 1.2rem; font-style: italic; }
-.instagram-phone__handle { color: #999592; font-family: var(--mono); font-size: .5rem; letter-spacing: .04em; }
-.instagram-embed { height: min(67vh, 38rem); height: min(67svh, 38rem); min-height: 25rem; overflow: auto; overscroll-behavior: contain; background: #fff; -webkit-overflow-scrolling: touch; }
-.instagram-embed .instagram-media { width: 100% !important; min-width: 0 !important; max-width: 100% !important; min-height: 100% !important; margin: 0 !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
-.instagram-embed iframe { width: 100% !important; min-width: 0 !important; max-width: 100% !important; }
-.instagram-phone__footer { display: flex; min-height: 3.7rem; align-items: center; gap: .55rem; padding: .5rem .75rem; border-top: 1px solid #292725; color: #aaa7a4; font-family: var(--mono); font-size: .48rem; }
-.instagram-phone__profile-mark { display: grid; width: 1.8rem; height: 1.8rem; flex: 0 0 auto; place-items: center; border: 1px solid #80736d; border-radius: 50%; color: var(--white); font-family: var(--sans); font-size: .57rem; font-weight: 600; }
-.instagram-phone__footer a { margin-left: auto; color: var(--white); }
-.instagram-phone__footer a:hover { color: var(--red); }
-.instagram-reel-browser { min-width: 0; }
-.instagram-reel-browser__heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.instagram-reel-browser__heading .eyebrow { margin-bottom: 1rem; }
-.instagram-reel-count { margin: 0 0 1rem; color: var(--red); font-family: var(--mono); font-size: .62rem; letter-spacing: .12em; }
-.instagram-reel-list { display: grid; grid-template-columns: 1fr 1fr; margin: 0; padding: 0; border-top: 1px solid var(--line); list-style: none; }
-.instagram-reel-list li { min-width: 0; border-bottom: 1px solid var(--line); }
-.instagram-reel-list li:nth-child(odd) { border-right: 1px solid var(--line); }
-.instagram-reel-link { display: grid; width: 100%; min-height: 4.2rem; grid-template-columns: 2.5rem 1fr auto; align-items: center; gap: .65rem; padding: .6rem .8rem; border: 0; background: transparent; color: #a4a19e; text-align: left; cursor: pointer; transition: color .2s ease, background .2s ease; }
-.instagram-reel-link:hover, .instagram-reel-link.is-active { background: #171514; color: var(--white); }
+.instagram-phone__screen { min-height: 40rem; overflow: hidden; border-radius: 2.65rem; background: #000; }
+.instagram-reel-list { display: flex; min-height: 40rem; flex-direction: column; justify-content: center; margin: 0; padding: 3.5rem 1rem 1rem; list-style: none; }
+.instagram-reel-list li { min-width: 0; border-bottom: 1px solid #242424; }
+.instagram-reel-list li:first-child { border-top: 1px solid #242424; }
+.instagram-reel-link { display: grid; min-height: 3.5rem; grid-template-columns: 2.25rem 1fr auto; align-items: center; gap: .75rem; padding: .5rem .5rem; color: #b6b3b0; transition: color .2s ease, background .2s ease; }
+.instagram-reel-link:hover { background: #111; color: var(--white); }
 .instagram-reel-link__number { color: var(--red); font-family: var(--mono); font-size: .62rem; letter-spacing: .1em; }
 .instagram-reel-link__type { font-size: .88rem; }
-.instagram-reel-link__indicator { width: .45rem; height: .45rem; border: 1px solid #5a5552; border-radius: 50%; }
-.instagram-reel-link.is-active .instagram-reel-link__indicator { border-color: var(--red); background: var(--red); box-shadow: 0 0 .7rem rgba(241,40,36,.55); }
-.instagram-reel-controls { display: flex; align-items: center; gap: .6rem; padding-top: 1.35rem; }
-.instagram-reel-control { display: grid; width: 2.8rem; height: 2.8rem; flex: 0 0 auto; place-items: center; border: 1px solid #4a4643; border-radius: 50%; background: transparent; color: var(--white); cursor: pointer; transition: border-color .2s ease, color .2s ease, opacity .2s ease; }
-.instagram-reel-control:hover:not(:disabled) { border-color: var(--red); color: var(--red); }
-.instagram-reel-control:disabled { opacity: .35; cursor: not-allowed; }
-.instagram-reel-control svg { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.4; }
-.instagram-profile-cta { display: inline-flex; min-height: 2.8rem; align-items: center; gap: .8rem; margin-left: auto; padding: 0 1rem; border: 1px solid #4a4643; color: var(--white); font-size: .72rem; white-space: nowrap; }
-.instagram-profile-cta:hover { border-color: var(--red); }
-.instagram-profile-cta .arrow-icon { color: var(--red); }
+.instagram-reel-link__indicator { width: .55rem; height: .55rem; border-top: 1px solid var(--red); border-right: 1px solid var(--red); transform: rotate(45deg); }
 
 .services { background: #101010; }
 .service-list { border-top: 1px solid var(--line); }
@@ -293,12 +269,6 @@ h1 em, h2 em { color: var(--red); font-family: var(--serif); font-weight: 500; l
   .site-nav .language-switcher { padding: .7rem 0; }
   .nav-cta { justify-content: space-between; margin-top: .5rem; }
 }
-@media (max-width: 900px) {
-  .instagram-showcase { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
-  .instagram-phone { width: min(100%, 23rem); }
-  .instagram-reel-browser { width: min(100%, 44rem); justify-self: center; }
-}
-
 @media (max-width: 680px) {
   html { scroll-padding-top: 4.5rem; }
   .site-header { min-height: 4.5rem; }
@@ -330,14 +300,10 @@ h1 em, h2 em { color: var(--red); font-family: var(--serif); font-weight: 500; l
   .gastronomie-slide__copy p { font-size: .8rem; }
   .gastronomie-controls { gap: .65rem; margin-top: 1rem; }
   .gastronomie-control { width: 2.6rem; height: 2.6rem; }
-  .instagram-showcase { grid-template-columns: 1fr; gap: 2.5rem; }
-  .instagram-phone { width: min(88vw, 23rem); }
-  .instagram-phone__screen { min-height: 0; }
-  .instagram-embed { height: min(78vh, 38rem); height: min(78svh, 38rem); min-height: 25rem; }
-  .instagram-reel-list { grid-template-columns: 1fr 1fr; }
-  .instagram-reel-link { min-height: 3.8rem; padding: .5rem .6rem; }
-  .instagram-reel-controls { flex-wrap: wrap; }
-  .instagram-profile-cta { min-height: 2.65rem; }
+  .instagram-phone { width: min(88vw, 24rem); }
+  .instagram-phone__screen, .instagram-reel-list { min-height: 36rem; }
+  .instagram-reel-list { padding: 3.5rem .65rem .8rem; }
+  .instagram-reel-link { min-height: 3.1rem; padding: .45rem .35rem; }
   .service { position: relative; grid-template-columns: 2rem 1fr auto; gap: .35rem 1rem; min-height: 8.3rem; padding: 1.5rem 0; }
   .service h3 { font-size: 1.14rem; }
   .service p { grid-column: 2; font-size: .76rem; }
