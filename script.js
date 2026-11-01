@@ -180,6 +180,11 @@ function setLanguage(language) {
   document.documentElement.lang = language;
   document.title = messages.pageTitle;
   document.querySelector('meta[name="description"]').setAttribute("content", messages.description);
+  document.querySelector('meta[property="og:title"]').setAttribute("content", messages.pageTitle);
+  document.querySelector('meta[property="og:description"]').setAttribute("content", messages.description);
+  document.querySelector('meta[property="og:locale"]').setAttribute("content", messages.ogLocale);
+  document.querySelector('meta[name="twitter:title"]').setAttribute("content", messages.pageTitle);
+  document.querySelector('meta[name="twitter:description"]').setAttribute("content", messages.description);
 
   for (const element of document.querySelectorAll("[data-i18n]")) {
     const key = element.dataset.i18n;
