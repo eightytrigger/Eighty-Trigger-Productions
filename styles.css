@@ -21,7 +21,7 @@ button { font: inherit; }
 .skip-link { position: fixed; z-index: 20; top: 1rem; left: 1rem; padding: .8rem 1rem; background: var(--white); color: var(--black); transform: translateY(-180%); }
 .skip-link:focus { transform: translateY(0); }
 
-.site-header { position: sticky; z-index: 10; top: 0; display: flex; min-height: 5.4rem; align-items: center; justify-content: space-between; padding: 0 var(--gutter); border-bottom: 1px solid rgba(255,255,255,.07); background: rgba(9,9,9,.88); backdrop-filter: blur(18px); }
+.site-header { position: sticky; z-index: 10; top: 0; display: flex; min-height: 5.4rem; align-items: center; justify-content: space-between; gap: clamp(1rem, 2vw, 2rem); padding: 0 var(--gutter); border-bottom: 1px solid rgba(255,255,255,.07); background: rgba(9,9,9,.88); backdrop-filter: blur(18px); }
 .brand { display: inline-flex; align-items: center; gap: .7rem; }
 .brand-mark { width: 2rem; height: 2rem; overflow: visible; }
 .brand-mark__ring { fill: none; stroke: var(--white); stroke-width: 3.8; }
@@ -30,9 +30,9 @@ button { font: inherit; }
 .brand-name { white-space: nowrap; font-size: .76rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .brand-name span { font-weight: 400; }
 .site-nav { display: flex; align-items: center; gap: clamp(1.2rem, 3vw, 3rem); }
-.site-nav a:not(.nav-cta) { color: #b6b3b0; font-family: var(--mono); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; transition: color .2s ease; }
+.site-nav a:not(.nav-cta) { color: #b6b3b0; font-family: var(--mono); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; transition: color .2s ease; white-space: nowrap; }
 .site-nav a:hover, .site-nav a:focus-visible { color: var(--white); }
-.nav-cta { display: inline-flex; min-height: 2.8rem; align-items: center; gap: 1.1rem; padding: 0 1.1rem; border: 1px solid #52504d; font-size: .7rem; transition: border-color .2s ease, background .2s ease; }
+.nav-cta { display: inline-flex; min-height: 2.8rem; align-items: center; gap: 1.1rem; padding: 0 1.1rem; border: 1px solid #52504d; font-size: .7rem; transition: border-color .2s ease, background .2s ease; white-space: nowrap; }
 .nav-cta:hover { border-color: var(--red); background: rgba(241,40,36,.12); }
 .nav-cta .arrow-icon { color: var(--red); font-size: 1rem; }
 .arrow-icon { display: inline-block; width: 1em; height: 1em; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; vertical-align: -.12em; }
@@ -120,6 +120,30 @@ h1 em, h2 em { color: var(--red); font-family: var(--serif); font-weight: 500; l
 .work-card__type { padding-top: .2rem; color: #757270; font-family: var(--mono); font-size: .56rem; text-align: right; text-transform: uppercase; }
 .work-disclaimer { margin: 2.7rem 0 0; color: #797673; font-family: var(--mono); font-size: .59rem; letter-spacing: .04em; }
 
+.gastronomie { overflow: hidden; background: #101010; }
+.gastronomie-carousel { position: relative; }
+.gastronomie-track { display: flex; gap: 1rem; margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter) .8rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-padding-inline: var(--gutter); scroll-snap-type: x mandatory; scrollbar-width: none; list-style: none; -webkit-overflow-scrolling: touch; }
+.gastronomie-track::-webkit-scrollbar { display: none; }
+.gastronomie-slide { display: grid; flex: 0 0 min(78vw, 68rem); grid-template-columns: minmax(0, 1.1fr) minmax(13rem, .75fr); min-height: min(65svh, 43rem); align-items: center; gap: clamp(1.5rem, 4vw, 4rem); padding: clamp(.65rem, 1.5vw, 1.2rem); border: 1px solid #302d2b; background: #0b0b0b; scroll-snap-align: center; scroll-snap-stop: always; }
+.gastronomie-slide__visual { display: grid; height: min(62svh, 40rem); margin: 0; aspect-ratio: 3 / 4; justify-self: center; place-items: center; overflow: hidden; background: #171412; }
+.gastronomie-slide__visual img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .75s cubic-bezier(.2,.7,.2,1), opacity .55s ease; }
+.gastronomie-slide:not(.is-active) .gastronomie-slide__visual img { opacity: .7; }
+.gastronomie-slide.is-active .gastronomie-slide__visual img { transform: scale(1.025); }
+.gastronomie-slide__copy { max-width: 24rem; padding: 1rem clamp(.5rem, 2vw, 1.5rem) 1rem 0; transition: opacity .45s ease, transform .55s ease; }
+.gastronomie-slide:not(.is-active) .gastronomie-slide__copy { opacity: .68; transform: translateY(.5rem); }
+.gastronomie-slide__number { display: block; margin-bottom: 1.4rem; color: var(--red); font-family: var(--mono); font-size: .62rem; letter-spacing: .12em; }
+.gastronomie-slide__copy h3 { margin: 0 0 .85rem; font-size: clamp(1.8rem, 3.2vw, 3.5rem); font-weight: 500; letter-spacing: -.07em; line-height: 1.02; }
+.gastronomie-slide__copy p { max-width: 20rem; margin: 0; color: var(--muted); font-size: .88rem; line-height: 1.8; }
+.gastronomie-controls { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1rem; margin-top: 1.6rem; }
+.gastronomie-controls__buttons { display: flex; gap: .55rem; }
+.gastronomie-control { display: grid; width: 2.8rem; height: 2.8rem; place-items: center; border: 1px solid #4a4643; border-radius: 50%; background: transparent; color: var(--white); cursor: pointer; transition: border-color .2s ease, color .2s ease, opacity .2s ease; }
+.gastronomie-control:hover:not(:disabled) { border-color: var(--red); color: var(--red); }
+.gastronomie-control:disabled { opacity: .35; cursor: not-allowed; }
+.gastronomie-control svg { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.4; }
+.gastronomie-status { margin: 0; color: #aaa7a4; font-family: var(--mono); font-size: .62rem; letter-spacing: .12em; text-align: center; }
+.gastronomie-progress { height: 1px; overflow: hidden; background: #302d2b; }
+.gastronomie-progress span { display: block; width: 100%; height: 100%; background: var(--red); transform: scaleX(.0714); transform-origin: left center; transition: transform .45s ease; }
+
 .services { background: #101010; }
 .service-list { border-top: 1px solid var(--line); }
 .service { display: grid; grid-template-columns: .35fr 1.2fr 1fr auto; align-items: center; gap: 1.5rem; min-height: 8rem; border-bottom: 1px solid var(--line); }
@@ -179,11 +203,26 @@ h1 em, h2 em { color: var(--red); font-family: var(--serif); font-weight: 500; l
 .site-footer { display: flex; min-height: 6rem; align-items: center; justify-content: space-between; gap: 1.5rem; border-top: 1px solid var(--line); }
 .site-footer .brand-mark { width: 1.65rem; height: 1.65rem; }
 .site-footer .brand-name { font-size: .65rem; }
+.footer-social { display: inline-flex; width: 2.5rem; height: 2.5rem; flex: 0 0 auto; align-items: center; justify-content: center; color: #aaa7a4; transition: color .2s ease; }
+.footer-social:hover, .footer-social:focus-visible { color: var(--white); }
+.footer-social svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.footer-social__dot { fill: currentColor; stroke: none; }
 .site-footer p, .footer-year { margin: 0; color: #777471; font-family: var(--mono); font-size: .56rem; letter-spacing: .06em; }
 .legal-footer { padding: .9rem var(--gutter); border-top: 1px solid #211f1e; color: #66625f; font-family: var(--mono); font-size: .52rem; letter-spacing: .08em; text-align: center; }
 :focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
 
 @media (min-width: 1600px) { :root { --gutter: max(6.5rem, calc((100vw - 1440px) / 2)); } }
+@media (min-width: 1021px) and (max-width: 1400px) {
+  .menu-toggle { display: grid; width: 2.8rem; height: 2.8rem; align-content: center; justify-items: center; gap: .36rem; border: 1px solid #393735; background: transparent; cursor: pointer; }
+  .menu-toggle span { display: block; width: 1rem; height: 1px; background: var(--white); transition: transform .2s ease; }
+  .menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(.22rem) rotate(45deg); }
+  .menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-.22rem) rotate(-45deg); }
+  .site-nav { position: absolute; top: calc(100% + 1px); right: 0; left: 0; display: none; align-items: stretch; gap: 0; padding: .3rem var(--gutter) 1.2rem; border-bottom: 1px solid var(--line); background: rgba(9,9,9,.98); }
+  .site-nav.is-open { display: flex; flex-direction: column; }
+  .site-nav a:not(.nav-cta) { padding: .85rem 0; border-bottom: 1px solid #222; font-size: .67rem; }
+  .site-nav .language-switcher { padding: .7rem 0; }
+  .nav-cta { justify-content: space-between; margin-top: .5rem; }
+}
 @media (max-width: 1020px) {
   .hero { grid-template-columns: 1fr; gap: 2rem; }
   .hero h1 { font-size: clamp(4rem, 9vw, 6rem); }
@@ -230,6 +269,15 @@ h1 em, h2 em { color: var(--red); font-family: var(--serif); font-weight: 500; l
   .study, .work-card--wide .study { min-height: 66vw; }
   .work-card__caption h3 { font-size: .98rem; }
   .work-disclaimer { max-width: 23rem; line-height: 1.7; }
+  .gastronomie-track { gap: .75rem; }
+  .gastronomie-slide { flex-basis: 88vw; grid-template-columns: 1fr; gap: 0; padding: .55rem; }
+  .gastronomie-slide__visual { width: 100%; height: auto; max-height: none; aspect-ratio: 3 / 4; }
+  .gastronomie-slide__copy { max-width: none; padding: 1rem .75rem 1.2rem; }
+  .gastronomie-slide__number { margin-bottom: .8rem; }
+  .gastronomie-slide__copy h3 { max-width: 13ch; margin-bottom: .55rem; font-size: clamp(1.8rem, 8vw, 2.7rem); }
+  .gastronomie-slide__copy p { font-size: .8rem; }
+  .gastronomie-controls { gap: .65rem; margin-top: 1rem; }
+  .gastronomie-control { width: 2.6rem; height: 2.6rem; }
   .service { position: relative; grid-template-columns: 2rem 1fr auto; gap: .35rem 1rem; min-height: 8.3rem; padding: 1.5rem 0; }
   .service h3 { font-size: 1.14rem; }
   .service p { grid-column: 2; font-size: .76rem; }
@@ -253,7 +301,8 @@ h1 em, h2 em { color: var(--red); font-family: var(--serif); font-weight: 500; l
   .contact h2 { font-size: clamp(3.6rem, 15vw, 5.8rem); }
   .contact > p:not(.eyebrow) { max-width: 24rem; font-size: .84rem; }
   .site-footer { min-height: auto; flex-wrap: wrap; padding-top: 1.5rem; padding-bottom: 1.5rem; }
-  .site-footer p { order: 3; width: 100%; }
+  .site-footer p { order: 4; width: 100%; }
+  .footer-social { margin-left: auto; }
   .footer-year { margin-left: auto; }
   .equipment-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .equipment-card { min-height: 9rem; padding: 1.1rem .75rem; }
